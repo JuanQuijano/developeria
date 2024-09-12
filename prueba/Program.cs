@@ -1,56 +1,66 @@
 ﻿Console.Clear();
 
-// initialize variables - graded assignments 
-int currentAssignments = 5;
+string studentName = "Sophia Johnson";
 
-int sophia1 = 93;
-int sophia2 = 87;
-int sophia3 = 98;
-int sophia4 = 95;
-int sophia5 = 100;
+string course1Name = "English 101";
+string course2Name = "Algebra 101";
+string course3Name = "Biology 101";
+string course4Name = "Computer Science I";
+string course5Name = "Psychology 101";
 
-//int[] sophia = {93, 87, 98, 95, 100};
+int gradeA = 4;
+int gradeB = 3;
 
-int nicolas1 = 80;
-int nicolas2 = 83;
-int nicolas3 = 82;
-int nicolas4 = 88;
-int nicolas5 = 85;
+int course1Grade = gradeA;
+int course2Grade = gradeB;
+int course3Grade = gradeB;
+int course4Grade = gradeB;
+int course5Grade = gradeA;
 
-int zahirah1 = 84;
-int zahirah2 = 96;
-int zahirah3 = 73;
-int zahirah4 = 85;
-int zahirah5 = 79;
+int course1Credit = 3;
+int course2Credit = 3;
+int course3Credit = 4;
+int course4Credit = 4;
+int course5Credit = 3;
 
-int jeong1 = 90;
-int jeong2 = 92;
-int jeong3 = 98;
-int jeong4 = 100;
-int jeong5 = 97;
-
-int sophiaSum;
-int nicolasSum = 0;
-int zahirahSum = 0;
-int jeongSum = 0;
+Console.WriteLine($"Student:\t\t{studentName}\n");
+Console.WriteLine("Nombre del curso \t Horas \t Notas");
+Console.WriteLine($"{course1Name} \t\t{course1Grade} \t{course1Credit}");
+Console.WriteLine($"{course2Name} \t\t{course2Grade} \t{course2Credit}");
+Console.WriteLine($"{course3Name} \t\t{course3Grade} \t{course3Credit}");
+Console.WriteLine($"{course4Name} \t{course4Grade} \t{course4Credit}");
+Console.WriteLine($"{course5Name} \t\t{course5Grade} \t{course5Credit}");
 
 
-sophiaSum = sophia1 + sophia2 + sophia3 + sophia4 + sophia5;
-nicolasSum = nicolas1 + nicolas2 + nicolas3 + nicolas4 + nicolas5;
-zahirahSum = zahirah1 + zahirah2 + zahirah3 + zahirah4 + zahirah5;
-jeongSum = jeong1 + jeong2 + jeong3 + jeong4 + jeong5;
+int totalGradePoints = 0;
+totalGradePoints += course1Credit * course1Grade;
+totalGradePoints += course2Credit * course2Grade;
+totalGradePoints += course3Credit * course3Grade;
+totalGradePoints += course4Credit * course4Grade;
+totalGradePoints += course5Credit * course5Grade;
 
-/*Console.WriteLine("Sophia: " + sophiaSum);
-Console.WriteLine("Nicolas: " + nicolasSum);
-Console.WriteLine("Zahirah: " + zahirahSum);
-Console.WriteLine("Jeong: " + jeongSum);*/
+int totalCreditHours = 0;
+totalCreditHours += course1Credit;
+totalCreditHours += course2Credit;
+totalCreditHours += course3Credit;
+totalCreditHours += course4Credit;
+totalCreditHours += course5Credit;
 
-decimal sophiaScore = sophiaSum / currentAssignments;
-decimal nicolasScore = nicolasSum / currentAssignments;
-decimal zahirahScore = zahirahSum / currentAssignments;
-decimal jeongScore = jeongSum / currentAssignments;
+Console.WriteLine();
+//Console.WriteLine($"{totalGradePoints} {totalCreditHours}");
 
-Console.WriteLine("Sophia: " + sophiaScore + " " + (sophiaScore >= 90 ? "A": "B"));
-Console.WriteLine("Nicolas: " + nicolasScore);
-Console.WriteLine("Zahirah: " + zahirahScore);
-Console.WriteLine("Jeong: " + jeongScore);
+decimal gradePointAverage = (decimal) totalGradePoints/totalCreditHours;
+
+//Console.WriteLine($"Final GPA: {gradePointAverage}");
+
+int leadingDigit = (int) gradePointAverage;
+int firstDigit = (int) (gradePointAverage * 10) % 10;
+int secondDigit = (int) (gradePointAverage * 100 ) % 10;
+//Console.WriteLine($"Final GPA: {leadingDigit}.{firstDigit}{secondDigit}");
+
+Console.WriteLine($"Final GPA:\t\t{gradePointAverage.ToString("##.#").Replace(',', '.')}");
+Console.WriteLine($"Final GPA:\t\t{gradePointAverage:F1}");
+
+decimal x = 7 / 5;
+gradePointAverage = 3.99872831m;
+Console.WriteLine((int)gradePointAverage);
