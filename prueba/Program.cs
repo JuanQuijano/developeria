@@ -1,9 +1,7 @@
-﻿var firstNumber = 10.2;
-var secondNumber = 7;
+﻿Console.Clear();
 
-Console.Clear();
-Console.WriteLine("Resultado de la suma: " + (firstNumber + secondNumber));
-Console.WriteLine("Resultado de la resta: " + (firstNumber - secondNumber));
-Console.WriteLine("Resultado de la division de enteros: " + ((int)(firstNumber / secondNumber)));
-Console.WriteLine("Resultado de la division de decimales: " + (firstNumber / secondNumber));
-Console.WriteLine("Resultado del modulo division de decimales: " + (firstNumber % secondNumber));
+var fahrenheit = 94;
+var celsius = (fahrenheit - 32m) * (5m / 9m);
+Console.WriteLine("The temperature is " + Math.Round(celsius,1) + " Celsius.");
+Console.WriteLine("The temperature is " + celsius.ToString("##.#") + " Celsius.");
+Console.WriteLine("The temperature is " + decimal.Round(celsius,1) + " Celsius.");
