@@ -1,12 +1,16 @@
 ﻿Console.Clear();
 
-string[] fraudulentOrderIDs = ["A123", "B456", "C789","D453"];
-int[] inventory = { 200, 450, 700, 175, 250 };
+string[] fraudulentOrderIDs = ["B123",
+"C234",
+"A345",
+"C15",
+"B177",
+"G3003",
+"C235",
+"B179"];
 
-foreach (var item in inventory)
+foreach (var orderId in fraudulentOrderIDs)
 {
-       Console.WriteLine(item); 
+    if(orderId.StartsWith("B"))
+    {Console.WriteLine(orderId);}
 }
-
-var estoEsUnaLista = new List<string>();
-estoEsUnaLista.Add("uno");  
