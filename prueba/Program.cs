@@ -1,48 +1,52 @@
-﻿Console.Clear();
+﻿Random random = new Random();
 
-Random dice = new Random();
+var discountPercentage = 10;
+var continua =  true;
 
-/*int roll1 = dice.Next(1, 7);
-int roll2 = dice.Next(1, 7);
-int roll3 = dice.Next(1, 7);
-
-int total = roll1 + roll2 + roll3;
-
-Console.WriteLine($"Dice roll: {roll1} + {roll2} + {roll3} = {total}");
-
-// Solución viendo solo total
-Console.WriteLine($"Dice roll: {dice.Next(3,19)}");*/
-
-// Solución con las tres tiradas
-
-var total = 0;
-int[] tirada = new int[3];
-
-Console.Write("Dice roll:");
-for (int i = 0; i < 3; i++)
+while (continua)
 {
-    tirada[i] = dice.Next(1, 7);
-    Console.Write($" {tirada[i]} {(i<2 ? "+" : "")}");
-    total = total + tirada[i];
+    var daysUntilExpiration = random.Next(12);
+
+
+    Console.Clear();
+
+    Console.WriteLine("Numero de dias para que expire: " + daysUntilExpiration);
+    if (daysUntilExpiration > 5)
+    {
+        Console.WriteLine("Tu suscripción está a punto de expirar. Renuevela ahora!");
+    }
+    else if (daysUntilExpiration <= 5 && daysUntilExpiration > 1)
+    {
+        Console.WriteLine("Tu suscripción está expira en " + daysUntilExpiration + " dias.");
+    }
+    else if (daysUntilExpiration == 1)
+    {
+        Console.WriteLine("Tu suscripción expira hoy \n Renueva y ahorrate un " + discountPercentage + "%");
+    }
+    else
+    {
+        Console.WriteLine("Tu suscripción ha expirado");
+    }
+
+
+    switch (daysUntilExpiration)
+    {
+        case int n when (n > 5):
+            Console.WriteLine("Tu suscripción está a punto de expirar. Renuevela ahora!");
+            break;
+        case int n when (n <= 5 && n > 3):
+            Console.WriteLine("Tu suscripción está expira en " + daysUntilExpiration + " dias.");
+            break;
+        case int n when (n == 1):
+            Console.WriteLine("Tu suscripción expira hoy \n Renueva y ahorrate un " + discountPercentage + "%");
+            break;
+        default:
+            Console.WriteLine("Tu suscripción ha expirado");
+            break;
+    }
+
+    var tecla = Console.ReadKey();
+    if(tecla.KeyChar == 'x')
+    {continua = false;}
+
 }
-
-//Console.WriteLine('a' >= 'c');
-
-if ((tirada[0] == tirada[1]) || (tirada[1] == tirada[2]) || (tirada[0] == tirada[2]))
-{
-    Console.WriteLine("\nYou rolled doubles! +2 bonus to total!");
-    total += 2;
-}
-if ((tirada[0] == tirada[1]) && (tirada[1]== tirada[2])) 
-{
-    Console.WriteLine("You rolled triples! +6 bonus to total!");
-    total += 4;
-}
-
-
-Console.WriteLine($"Total: {total}");
-
-if (total > 10)
-    Console.WriteLine("You win!");
-else
-    Console.WriteLine("Sorry, you lose.");
