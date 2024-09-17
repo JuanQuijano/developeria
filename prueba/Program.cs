@@ -1,6 +1,6 @@
 ﻿using System;
 
-using System;
+Console.Clear();
 
 // Crear un array de nombres
 string[] alumnos = { "Sophia", "Andrew", "Emma", "Logan" };
@@ -18,11 +18,7 @@ decimal sumaDeValores = 0;
 // Mostrar los nombres y sus valores asociados
 foreach (var alumno in alumnos)
 {
-    //Utilizar array.sum
-    foreach (var nota in notas[indiceDeAlumno])
-    {
-         sumaDeValores = sumaDeValores + nota ;
-    }
+    sumaDeValores = notas[indiceDeAlumno].Sum();
 
     var media = sumaDeValores / (notas.Length + 1);
     indiceDeAlumno++;
@@ -30,26 +26,24 @@ foreach (var alumno in alumnos)
 
 
     var notaEnLetra = "F";
-if(media <= 59) {notaEnLetra = "F";}
-else if(media <=62) {notaEnLetra = "D-";}
-else if(media <=66) {notaEnLetra = "D";}
-else if(media <=69) {notaEnLetra = "D+";}
-else if(media <=72) {notaEnLetra = "C-";}
-else if(media <=76) {notaEnLetra = "C";}
-else if(media <=79) {notaEnLetra = "C+";}
-else if(media <=82) {notaEnLetra = "B-";}
-else if(media <=86) {notaEnLetra = "B";}
-else if(media <=89) {notaEnLetra = "B+";}
-else if(media <=92) {notaEnLetra = "A-";}
-else if(media <=96) {notaEnLetra = "A";}
-else if(media <=100) {notaEnLetra = "A+";}
-else {notaEnLetra = "Out Range";}
- 
- // tabular resultado
-Console.WriteLine($"Nombre: {alumno} \t Valores: {media} \t {notaEnLetra}");
+    if (media <= 59) { notaEnLetra = "F"; }
+    else if (media <= 62) { notaEnLetra = "D-"; }
+    else if (media <= 66) { notaEnLetra = "D"; }
+    else if (media <= 69) { notaEnLetra = "D+"; }
+    else if (media <= 72) { notaEnLetra = "C-"; }
+    else if (media <= 76) { notaEnLetra = "C"; }
+    else if (media <= 79) { notaEnLetra = "C+"; }
+    else if (media <= 82) { notaEnLetra = "B-"; }
+    else if (media <= 86) { notaEnLetra = "B"; }
+    else if (media <= 89) { notaEnLetra = "B+"; }
+    else if (media <= 92) { notaEnLetra = "A-"; }
+    else if (media <= 96) { notaEnLetra = "A"; }
+    else if (media <= 100) { notaEnLetra = "A+"; }
+    else { notaEnLetra = "Out Range"; }
+
+    Console.WriteLine($"Nombre: {alumno} \t Valores: {media} \t {notaEnLetra}");
 
 }
-
 
 Console.WriteLine("Press the Enter key to continue");
 Console.ReadLine();
