@@ -1,57 +1,55 @@
 ﻿using System;
 
-// initialize variables - graded assignments 
-int currentAssignments = 5;
+using System;
 
-int sophia1 = 90;
-int sophia2 = 86;
-int sophia3 = 87;
-int sophia4 = 98;
-int sophia5 = 100;
+// Crear un array de nombres
+string[] alumnos = { "Sophia", "Andrew", "Emma", "Logan" };
 
-int andrew1 = 92;
-int andrew2 = 89;
-int andrew3 = 81;
-int andrew4 = 96;
-int andrew5 = 90;
+// Crear un array de arrays de enteros
+//Inicializar directamente
+int[][] notas = new int[4][];
+notas[0] = new int[] { 90, 86, 87, 98, 100 };
+notas[1] = new int[] { 92, 89, 81, 96, 90 };
+notas[2] = new int[] { 90, 85, 87, 98, 68 };
+notas[3] = new int[] { 90, 95, 87, 88, 96 };
 
-int emma1 = 90;
-int emma2 = 85;
-int emma3 = 87;
-int emma4 = 98;
-int emma5 = 68;
+var indiceDeAlumno = 0;
+decimal sumaDeValores = 0;
+// Mostrar los nombres y sus valores asociados
+foreach (var alumno in alumnos)
+{
+    //Utilizar array.sum
+    foreach (var nota in notas[indiceDeAlumno])
+    {
+         sumaDeValores = sumaDeValores + nota ;
+    }
 
-int logan1 = 90;
-int logan2 = 95;
-int logan3 = 87;
-int logan4 = 88;
-int logan5 = 96;
+    var media = sumaDeValores / (notas.Length + 1);
+    indiceDeAlumno++;
+    sumaDeValores = 0;
 
-int sophiaSum = 0;
-int andrewSum = 0;
-int emmaSum = 0;
-int loganSum = 0;
 
-decimal sophiaScore;
-decimal andrewScore;
-decimal emmaScore;
-decimal loganScore;
+    var notaEnLetra = "F";
+if(media <= 59) {notaEnLetra = "F";}
+else if(media <=62) {notaEnLetra = "D-";}
+else if(media <=66) {notaEnLetra = "D";}
+else if(media <=69) {notaEnLetra = "D+";}
+else if(media <=72) {notaEnLetra = "C-";}
+else if(media <=76) {notaEnLetra = "C";}
+else if(media <=79) {notaEnLetra = "C+";}
+else if(media <=82) {notaEnLetra = "B-";}
+else if(media <=86) {notaEnLetra = "B";}
+else if(media <=89) {notaEnLetra = "B+";}
+else if(media <=92) {notaEnLetra = "A-";}
+else if(media <=96) {notaEnLetra = "A";}
+else if(media <=100) {notaEnLetra = "A+";}
+else {notaEnLetra = "Out Range";}
+ 
+ // tabular resultado
+Console.WriteLine($"Nombre: {alumno} \t Valores: {media} \t {notaEnLetra}");
 
-sophiaSum = sophia1 + sophia2 + sophia3 + sophia4 + sophia5;
-andrewSum = andrew1 + andrew2 + andrew3 + andrew4 + andrew5;
-emmaSum = emma1 + emma2 + emma3 + emma4 + emma5;
-loganSum = logan1 + logan2 + logan3 + logan4 + logan5;
+}
 
-sophiaScore = (decimal)sophiaSum / currentAssignments;
-andrewScore = (decimal)andrewSum / currentAssignments;
-emmaScore = (decimal)emmaSum / currentAssignments;
-loganScore = (decimal)loganSum / currentAssignments;
-
-Console.WriteLine("Student\t\tGrade\n");
-Console.WriteLine("Sophia:\t\t" + sophiaScore + "\tA-");
-Console.WriteLine("Andrew:\t\t" + andrewScore + "\tB+");
-Console.WriteLine("Emma:\t\t" + emmaScore + "\tB");
-Console.WriteLine("Logan:\t\t" + loganScore + "\tA-");
 
 Console.WriteLine("Press the Enter key to continue");
 Console.ReadLine();
