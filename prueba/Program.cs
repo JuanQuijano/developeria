@@ -1,59 +1,64 @@
-﻿using System;
+﻿// SKU = Stock Keeping Unit. 
+// SKU value format: <product #>-<2-letter color code>-<size code>
+string sku = "02-XX-M";
 
-Console.Clear();
+string[] product = sku.Split('-');
 
-// Crear un array de nombres
-string[] alumnos = { "Sophia", "Andrew", "Emma", "Logan", "Pepe", "Sixto" };
+string type = "";
+string color = "";
+string size = "";
 
-// Crear un array de arrays de enteros
-//Inicializar directamente
-int[][] notas = new int[][]
+switch (product[0])
 {
-new int[] { 90, 86, 87, 98, 100 },
-new int[] { 92, 89, 81, 96, 90 },
-new int[] { 90, 85, 87, 98, 68 },
-new int[] { 90, 95, 87, 88, 96 },
-new int[] { 90, 95, 87, 88, 96 },
-new int[] { 90, 95, 87, 88, 96 }
-};
+    case "01":
+        type = "Sweat shirt";
+        break;
 
-if (alumnos.Length != notas.Length)
-{ Console.WriteLine("El número de alumnos no coincide con el número de notas");}
-else
-{
+    case "02":
+        type = "T-Shirt";
+        break;
 
-    var indiceDeAlumno = 0;
-    decimal sumaDeValores = 0;
-    // Mostrar los nombres y sus valores asociados
-    foreach (var alumno in alumnos)
-    {
-        sumaDeValores = notas[indiceDeAlumno].Sum();
+    case "03":
+        type = "Sweat pants";
+        break;
 
-        var media = sumaDeValores / (notas[0].Length);
-        indiceDeAlumno++;
-        sumaDeValores = 0;
-
-
-        var notaEnLetra = "F";
-        if (media <= 59) { notaEnLetra = "F"; }
-        else if (media <= 62) { notaEnLetra = "D-"; }
-        else if (media <= 66) { notaEnLetra = "D"; }
-        else if (media <= 69) { notaEnLetra = "D+"; }
-        else if (media <= 72) { notaEnLetra = "C-"; }
-        else if (media <= 76) { notaEnLetra = "C"; }
-        else if (media <= 79) { notaEnLetra = "C+"; }
-        else if (media <= 82) { notaEnLetra = "B-"; }
-        else if (media <= 86) { notaEnLetra = "B"; }
-        else if (media <= 89) { notaEnLetra = "B+"; }
-        else if (media <= 92) { notaEnLetra = "A-"; }
-        else if (media <= 96) { notaEnLetra = "A"; }
-        else if (media <= 100) { notaEnLetra = "A+"; }
-        else { notaEnLetra = "Out Range"; }
-
-        Console.WriteLine($"Nombre: {alumno} \t Valores: {media.ToString("##.#")} \t {notaEnLetra}");
-
-    }
+    default:
+        type = "Others";
+    break;
 }
 
-Console.WriteLine("Press the Enter key to continue");
-Console.ReadLine();
+switch (product[1])
+{
+    case "BL":
+        color = "Black";
+        break;
+
+    case "MN":
+        color = "Maroon";
+        break;
+
+    default:
+        color = "White";
+    break;
+}
+
+switch (product[2])
+{
+    case "S":
+        size = "Small";
+        break;
+
+    case "M":
+        size = "Medium";
+        break;
+
+    case "L":
+        size = "Large";
+        break;        
+
+    default:
+        size = "One Size Fits All";
+    break;
+}
+
+Console.WriteLine($"Product: {size} {color} {type}");
