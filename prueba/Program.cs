@@ -1,8 +1,5 @@
-﻿#region Condicional de suma
-if (true)
+﻿string[] names = { "Alex", "Eddie", "David", "Michael" };
+for (int i = 0; i < names.Length;)
 {
-    #region Impresion en consola
-    Console.WriteLine("Hola Mundo");
-    #endregion
+    Console.WriteLine(names[i++]);
 }
-#endregion
