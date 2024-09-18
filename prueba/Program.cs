@@ -2,38 +2,26 @@
 var vidaDelMonstruo = 10;
 var dados = new Random();
 var tirada = 0;
-var atacante = true;
+var isHero = true;
 
 Console.Clear();
 
 do
 {
-    Console.WriteLine($"Ataca el {atacante}");
-
     tirada = dados.Next(1, 11);
-    Console.Write(" -> saca un " + tirada);
-
-    vidaDelMonstruo -= tirada;
-    Console.WriteLine($" -> le quedan {vidaDelMonstruo} puntos de vida al monstruo");
-
-    if (vidaDelMonstruo >= 0)
+    if (isHero)
     {
-        Console.WriteLine("Ataca el monstruo");
-        tirada = dados.Next(1, 11);
-        Console.Write(" -> saca un " + tirada);
-
-        vidaDelHeroe -= tirada;
-        Console.WriteLine($" -> le quedan {vidaDelHeroe} puntos de vida al heroe");
-        if (vidaDelHeroe <= 0)
-        {
-            Console.WriteLine("Ha muerto el heroe");
-        }
+        vidaDelMonstruo -= tirada;
+        Console.WriteLine($"El monstruo ha recibido {tirada} puntos de daño. Y le quedan {vidaDelMonstruo} puntos de vida");
     }
     else
-    { Console.WriteLine("El monstruo ha muerto"); }
+    {
+        vidaDelHeroe -= tirada;
+        Console.WriteLine($"El heroe ha recibido {tirada} puntos de daño. Y le quedan {vidaDelHeroe} puntos de vida");
+    }
 
-    Console.ReadKey();
+    isHero = !isHero;   
 
-} while (vidaDelHeroe > 0 && vidaDelMonstruo > 0); 
+} while (vidaDelHeroe > 0 && vidaDelMonstruo > 0);
 
-Console.WriteLine("El combate ha finalizado");
+Console.WriteLine($"El combate ha finalizado, ha ganado el {(vidaDelHeroe > 0?"Heroe":"Monstruo")}");
