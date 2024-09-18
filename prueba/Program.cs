@@ -1,5 +1,12 @@
-﻿string[] names = { "Alex", "Eddie", "David", "Michael" };
-for (int i = 0; i < names.Length;)
+﻿for (int i = 0; i <= 100; i++)
 {
-    Console.WriteLine(names[i++]);
+    Console.Write(i);
+    if ((i % 3 == 0) && (i % 5 == 0))
+    { Console.WriteLine("- FizzBuzz"); }
+    else if (i % 3 == 0)
+    { Console.WriteLine("- Buzz"); }
+    else if (i % 5 == 0)
+    { Console.WriteLine("- Fizz"); }
+    else
+    {Console.WriteLine();}
 }
