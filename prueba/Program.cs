@@ -1,12 +1,9 @@
-﻿for (int i = 0; i <= 100; i++)
+﻿Console.Clear();
+for (int i = 0; i <= 100; i++)
 {
-    Console.Write(i);
-    if ((i % 3 == 0) && (i % 5 == 0))
-    { Console.WriteLine("- FizzBuzz"); }
-    else if (i % 3 == 0)
-    { Console.WriteLine("- Buzz"); }
-    else if (i % 5 == 0)
-    { Console.WriteLine("- Fizz"); }
-    else
-    {Console.WriteLine();}
+var resultado = i + ((i % 3 == 0) && (i % 5 == 0) ? "- FizzBuzz" :
+                (i % 3 == 0)?"- Fizz": 
+                (i % 5 == 0)?"- Buzz":"");
+
+Console.WriteLine(i+ resultado);
 }
