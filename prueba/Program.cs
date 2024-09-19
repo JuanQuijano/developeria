@@ -1,27 +1,22 @@
-﻿var vidaDelHeroe = 10;
-var vidaDelMonstruo = 10;
-var dados = new Random();
-var tirada = 0;
-var isHero = true;
+﻿// Desafio Realización de un desafío para combinar valores de matriz de cadenas como cadenas y como enteros
+
+using System.Runtime.InteropServices.Marshalling;
+
+string[] values = { "12.3", "45", "ABC", "11", "DEF" };
+var mensaje = "";
+var total = 0.0;
+
+foreach (var value in values)
+{
+    if (double.TryParse(value, out double resultado))
+    { total += resultado; }
+    else
+    { mensaje += value; }
+}
 
 Console.Clear();
+Console.WriteLine("Mensaje: " + mensaje);
+Console.WriteLine("Total: " + total);
 
-do
-{
-    tirada = dados.Next(1, 11);
-    if (isHero)
-    {
-        vidaDelMonstruo -= tirada;
-        Console.WriteLine($"El monstruo ha recibido {tirada} puntos de daño. Y le quedan {vidaDelMonstruo} puntos de vida");
-    }
-    else
-    {
-        vidaDelHeroe -= tirada;
-        Console.WriteLine($"El heroe ha recibido {tirada} puntos de daño. Y le quedan {vidaDelHeroe} puntos de vida");
-    }
 
-    isHero = !isHero;   
 
-} while (vidaDelHeroe > 0 && vidaDelMonstruo > 0);
-
-Console.WriteLine($"El combate ha finalizado, ha ganado el {(vidaDelHeroe > 0?"Heroe":"Monstruo")}");
