@@ -1,16 +1,16 @@
-﻿string pangram = "The quick brown fox jumps over the lazy dog";
-string[] resultado = pangram.Split(" ");
-//string[] reverse = new string[resultado.Length];
-string final = string.Empty;
+﻿using System.Globalization;
 
+CultureInfo.CurrentCulture = new CultureInfo("en-US");
 
-for (int i = 0; i < resultado.Length; i++)
-{
-    /*string palabra = resultado[i];
-    string palabraInvertida = string.Join("", palabra.ToCharArray().Reverse());
-    reverse[i] = palabraInvertida;*/
-    final += string.Join("", resultado[i].ToCharArray().Reverse()) + " ";
+decimal price = 123.45m;
+int discount = 50;
+Console.WriteLine($"Price: {price:C} (Save {discount:C})");
 
-}
+decimal measurement = 123456.78912m;
+Console.WriteLine($"Measurement: {measurement:N} units");
 
-Console.WriteLine(final);
+string input = "Pad this";
+string input2 = "Pad two of two";
+ Console.WriteLine(input.PadLeft(20,'-'));
+Console.WriteLine(input2.PadLeft(20,'-'));
+
