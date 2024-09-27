@@ -1,5 +1,19 @@
 ﻿Console.Clear();
-var fecha = new DateTime(2024,05,31);
+int[] numeros = {1,2,3,4,5};
 
-Console.WriteLine (fecha.AddMonths(1).Ticks);
-Thread.Sleep(1000);
+
+
+void PrintArrayDeNumeros()
+{
+    foreach (var numero in numeros)
+    {
+        Console.Write($"{numero} ");
+    }
+    Console.WriteLine();
+}
+
+
+
+Console.WriteLine("Contents of Array:");
+PrintArrayDeNumeros();
+
