@@ -1,75 +1,40 @@
-﻿using System;
+﻿using System.Runtime.CompilerServices;
 
-int[] times = { 800, 1200, 1600, 2000 };
-int diff = 0;
-int currentGMT = 0;
-int newGMT = 0;
+var ip = "192.a.74.13";
+var numbers = ip.Split('.');
 
-Console.WriteLine("Enter current GMT");
-AdjusTime();
- currentGMT = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Current Medicine Schedule:");
-DisplayTime();
-
-Console.WriteLine("Enter new GMT");
- newGMT = Convert.ToInt32(Console.ReadLine());
-AdjusTime();
-DisplayTime();
-
-
-
-void AdjusTime()
+bool ValidateLength()
 {
-    if (Math.Abs(newGMT) > 12 || Math.Abs(currentGMT) > 12)
-    {
-        Console.WriteLine("Invalid GMT");
-    }
-    else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0)
-    {
-        diff = 100 * (Math.Abs(newGMT) - Math.Abs(currentGMT));
-
-        /* Adjust the times by adding the difference, keeping the value within 24 hours */
-        for (int i = 0; i < times.Length; i++)
-        {
-            times[i] = ((times[i] + diff)) % 2400;
-        }
-    }
-    else
-    {
-        diff = 100 * (Math.Abs(newGMT) + Math.Abs(currentGMT));
-
-        /* Adjust the times by adding the difference, keeping the value within 24 hours */
-        for (int i = 0; i < times.Length; i++)
-        {
-            times[i] = ((times[i] + diff)) % 2400;
-        }
-    }
+    return numbers.Length == 4;
 }
-void DisplayTime()
+bool ValidateIp()
 {
-    Console.WriteLine("New Medicine Schedule:");
-
-    /* Format and display medicine times */
-    foreach (int val in times)
+    bool ValidateZeroes(string number)
     {
-        string time = val.ToString();
-        int len = time.Length;
-
-        if (len >= 3)
-        {
-            time = time.Insert(len - 2, ":");
-        }
-        else if (len == 2)
-        {
-            time = time.Insert(0, "0:");
-        }
-        else
-        {
-            time = time.Insert(0, "0:0");
-        }
-
-        Console.Write($"{time} ");
+        return (number.Length > 1 && number[0] == '0');
+    }
+    bool ValidateRange(string number)
+    {
+        return (int.Parse(number) < 0 || int.Parse(number) > 255);
     }
 
-    Console.WriteLine();
+    foreach (var number in numbers)
+    {
+        if (ValidateZeroes(number) || ValidateRange(number))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+Console.Clear();
+if (ValidateLength() && ValidateIp())
+{
+    Console.WriteLine($"{ip} ip is a VALID IPv4 address");
+}
+else
+{
+    Console.WriteLine($"{ip} ip is an INVALID IPv4 address");
 }
