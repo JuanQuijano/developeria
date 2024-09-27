@@ -1,40 +1,40 @@
-﻿using System.Runtime.CompilerServices;
+﻿int[] schedule = { 800, 1200, 1600, 2000 };
+var newGMTA = -6;
 
-var ip = "192.a.74.13";
-var numbers = ip.Split('.');
+DisplayAdjustedTimes((int[])schedule.Clone(), newGMTA, 6);
 
-bool ValidateLength()
+void DisplayAdjustedTimes(int[] times, int newGMT, int currentGMT)
 {
-    return numbers.Length == 4;
-}
-bool ValidateIp()
-{
-    bool ValidateZeroes(string number)
+    int diff = 0;
+    if (Math.Abs(newGMT) > 12 || Math.Abs(currentGMT) > 12)
     {
-        return (number.Length > 1 && number[0] == '0');
+        Console.WriteLine("Invalid GMT");
     }
-    bool ValidateRange(string number)
+    else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0)
     {
-        return (int.Parse(number) < 0 || int.Parse(number) > 255);
+        diff = 100 * (Math.Abs(newGMT) - Math.Abs(currentGMT));
     }
-
-    foreach (var number in numbers)
+    else
     {
-        if (ValidateZeroes(number) || ValidateRange(number))
-        {
-            return false;
-        }
+        diff = 100 * (Math.Abs(newGMT) + Math.Abs(currentGMT));
     }
-    return true;
-}
 
 
-Console.Clear();
-if (ValidateLength() && ValidateIp())
-{
-    Console.WriteLine($"{ip} ip is a VALID IPv4 address");
+    Console.Clear();
+    for (var i = 0; i < times.Length; i++)
+    {
+        var newTime = ((times[i] + diff)) % 2400;
+        Console.WriteLine($"{times[i]} -> {newTime}");
+    }
+    
+    newGMT = 50;
 }
-else
-{
-    Console.WriteLine($"{ip} ip is an INVALID IPv4 address");
-}
+
+    Console.Clear();
+    for (var i = 0; i < schedule.Length; i++)
+    {
+        Console.WriteLine($"{schedule[i]}");
+    }
+
+    Console.WriteLine(newGMTA);
+
