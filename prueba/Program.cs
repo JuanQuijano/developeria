@@ -1,47 +1,49 @@
-﻿using System.Runtime.InteropServices;
+﻿Random random = new Random();
 
-string[,] corporate =
+Console.WriteLine("Would you like to play? (Y/N)");
+if (ShouldPlay()) 
 {
-    {"Robert", "Bavin"}, {"Simon", "Bright"},
-    {"Kim", "Sinclair"}, {"Aashrita", "Kamath"},
-    {"Sarah", "Delucchi"}, {"Sinan", "Ali"}
-};
-
-string[,] external =
-{
-    {"Vinnie", "Ashton"}, {"Cody", "Dysart"},
-    {"Shay", "Lawrence"}, {"Daren", "Valdes"}
-};
-
-for (int i = 0; i < corporate.GetLength(0); i++)
-{
-    Console.WriteLine(CreateEmail(i, true));
+    PlayGame();
 }
 
-for (int i = 0; i < external.GetLength(0); i++)
+bool ShouldPlay() 
 {
-    Console.WriteLine(CreateEmail(i, false));
+    string response = Console.ReadLine();
+    return response.ToLower().Equals("y");
 }
 
-string CreateEmail(int indice, bool IsInternal)
+void PlayGame() 
 {
-    var internalDomain = "contoso.com";
-    var externalDomain = "hayworth.com";
-    var email = string.Empty;
+    var play = true;
 
+    while (play) {
+        var target = GetTarget();
+        var roll = RollDice();
 
-    if (IsInternal)
-    {
-        var nombre = corporate[indice, 0].Substring(0, 2);
-        var apellido = corporate[indice, 1];
-        email = nombre + apellido + "@" + internalDomain;
+        Console.WriteLine($"Roll a number greater than {target} to win!");
+        Console.WriteLine($"You rolled a {roll}");
+        Console.WriteLine(WinOrLose(roll, target));
+        Console.WriteLine("\nPlay again? (Y/N)");
+
+        play = ShouldPlay();
     }
-    else
-    {
-        var nombre = external[indice, 0].Substring(0, 2);
-        var apellido = external[indice, 1];
-        email = nombre + apellido + "@" + externalDomain;
-    };
+}
 
-    return email.ToLower();
+int GetTarget() 
+{
+    return random.Next(1, 6);
+}
+
+int RollDice() 
+{
+    return random.Next(1, 7);
+}
+
+string WinOrLose(int roll, int target) 
+{
+    if (roll > target) 
+    {
+        return "You win!";
+    }
+    return "You lose!";
 }
