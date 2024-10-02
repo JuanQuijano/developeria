@@ -1,3 +1,5 @@
+// dotnet add HolaMundoTest\HolaMundoTest.csproj reference HolaMundo\HolaMundo.csproj
+
 namespace HolaMundo;
 
 [TestClass]
